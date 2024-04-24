@@ -6,7 +6,10 @@ public class JyankenExec_Chapter26 {
 
 		Jyanken_Chapter26 janken = new Jyanken_Chapter26();
 
-		janken.playGame();
+		String user = janken.getMyChoice();
+		String you = janken.getRandom();
+
+		janken.playGame(user, you);
 
 	}
 }

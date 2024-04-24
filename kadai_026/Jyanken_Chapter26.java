@@ -14,25 +14,27 @@ public class Jyanken_Chapter26 {
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.next();
 
-		if (input.equals("r") || input.equals("s") || input.equals("p")) {
-			scanner.close();
-		} else {
-			getMyChoice();
+		while (true) {
+			if (input.equals("r") || input.equals("s") || input.equals("p")) {
+				scanner.close();
+			} else {
+				System.out.println("r s pのどれかを入れてください");
+				input = scanner.next();
+			}
+			return input;
 		}
-
-		return input;
 	}
 
 	public String getRandom() {//相手のじゃんけん
 
-		String junken[] = { "r","s","p" };
+		String junken[] = { "r", "s", "p" };
 		int num = (int) (Math.floor(Math.random() * (junken.length)));
 		String output = junken[num];
 		return output;
 
 	}
 
-	public void playGame() {//じゃんけんを行う
+	public void playGame(String user, String you) {//じゃんけんを行う
 
 		HashMap<String, String> judMap = new HashMap<String, String>();
 
@@ -40,16 +42,13 @@ public class Jyanken_Chapter26 {
 		judMap.put("s", "チョキ");
 		judMap.put("p", "パー");
 
-		String myChoice = getMyChoice();
-		String choice = getRandom();
+		System.out.println("自分の手は" + judMap.get(user) + ",対戦相手の手は" + judMap.get(you));
 
-		System.out.println("自分の手は" + judMap.get(myChoice) + ",対戦相手の手は" + judMap.get(choice));
-
-		if (myChoice.equals(choice)) {
+		if (user.equals(you)) {
 			System.out.println("あいこです");
-		} else if ((myChoice.equals("r") && choice.equals("s")) ||
-				(myChoice.equals("s") && choice.equals("p")) ||
-				(myChoice.equals("p") && choice.equals("r"))) {
+		} else if ((user.equals("r") && you.equals("s")) ||
+				(user.equals("s") && you.equals("p")) ||
+				(user.equals("p") && you.equals("r"))) {
 			System.out.println("自分の勝ちです");
 		} else {
 			System.out.println("自分の負けです");
